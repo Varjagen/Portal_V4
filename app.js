@@ -3768,12 +3768,12 @@ function DMInterface({ state, dispatch, sync, syncStatus, peerCount, onLogout, r
             onPlaceReminderDone={() => setPlacingReminder(false)}
             hoveredTokenId={hoveredToken?.tokenId}
             onTokenHoverChange={setHoveredToken}
-            blockZones={state.blockZones?.[currentMapId] || []}
+            blockZones={state.blockZones?.[state.currentMapId] || []}
             placingBlock={placingBlock}
             onPlaceBlockDone={() => setPlacingBlock(false)}
-            onBlockUpsert={(zone) => dispatch({ type: 'BLOCK_ZONE_UPSERT', mapId: currentMapId, zone })}
-            onBlockDelete={(id) => dispatch({ type: 'BLOCK_ZONE_DELETE', mapId: currentMapId, id })}
-            visionSources={computeVisionSources(state, currentMapId)}
+            onBlockUpsert={(zone) => dispatch({ type: 'BLOCK_ZONE_UPSERT', mapId: state.currentMapId, zone })}
+            onBlockDelete={(id) => dispatch({ type: 'BLOCK_ZONE_DELETE', mapId: state.currentMapId, id })}
+            visionSources={computeVisionSources(state, state.currentMapId)}
           />
 
           <TokenTooltip hovered={hoveredToken} entities={state.entities} mode="dm" x={cursorPos.x} y={cursorPos.y} />
